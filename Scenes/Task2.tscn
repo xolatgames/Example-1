@@ -1,0 +1,144 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://Scripts/Scene2.gd" type="Script" id=1]
+
+[sub_resource type="Gradient" id=2]
+offsets = PoolRealArray( 0, 0.315789, 0.649123, 1 )
+colors = PoolColorArray( 1, 0, 0, 1, 1, 0.941176, 0, 1, 0, 1, 0.0666667, 1, 0.0588235, 0, 1, 1 )
+
+[sub_resource type="GradientTexture" id=3]
+gradient = SubResource( 2 )
+
+[sub_resource type="ParticlesMaterial" id=1]
+flag_disable_z = true
+spread = 180.0
+gravity = Vector3( 0, 100, 0 )
+initial_velocity = 200.0
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+scale = 10.0
+color_ramp = SubResource( 3 )
+
+[node name="Scene2" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 1 )
+
+[node name="Firework" type="Particles2D" parent="."]
+position = Vector2( 512, 288 )
+emitting = false
+amount = 100
+one_shot = true
+process_material = SubResource( 1 )
+
+[node name="Buttons" type="VBoxContainer" parent="." groups=["variants"]]
+margin_left = 32.0
+margin_top = 32.0
+margin_right = 224.0
+margin_bottom = 128.0
+
+[node name="Button 4" type="Button" parent="Buttons"]
+margin_right = 192.0
+margin_bottom = 20.0
+mouse_default_cursor_shape = 2
+text = "Button 4"
+
+[node name="Button 1" type="Button" parent="Buttons"]
+margin_top = 24.0
+margin_right = 192.0
+margin_bottom = 44.0
+mouse_default_cursor_shape = 2
+text = "Button 1"
+
+[node name="Button 3" type="Button" parent="Buttons"]
+margin_top = 48.0
+margin_right = 192.0
+margin_bottom = 68.0
+mouse_default_cursor_shape = 2
+text = "Button 3"
+
+[node name="Button 2" type="Button" parent="Buttons"]
+margin_top = 72.0
+margin_right = 192.0
+margin_bottom = 92.0
+mouse_default_cursor_shape = 2
+text = "Button 2"
+
+[node name="Quit" type="Control" parent="."]
+visible = false
+margin_left = 256.0
+margin_top = 32.0
+margin_right = 864.0
+margin_bottom = 64.0
+
+[node name="Label" type="Label" parent="Quit"]
+margin_right = 512.0
+margin_bottom = 32.0
+text = "Quit? Seriously?"
+
+[node name="Yes" type="Button" parent="Quit"]
+margin_left = 512.0
+margin_right = 608.0
+margin_bottom = 32.0
+mouse_default_cursor_shape = 2
+text = "Why not?"
+
+[node name="No" type="Button" parent="Quit"]
+margin_left = 640.0
+margin_right = 736.0
+margin_bottom = 32.0
+mouse_default_cursor_shape = 2
+text = "Its joke :)"
+
+[node name="Scene Changing" type="Panel" parent="."]
+visible = false
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -96.0
+margin_top = -76.0
+margin_right = 96.0
+margin_bottom = 68.0
+
+[node name="Label" type="Label" parent="Scene Changing"]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -64.0
+margin_right = 64.0
+margin_bottom = 32.0
+text = "Change the Scene?"
+align = 1
+valign = 1
+
+[node name="Change" type="Button" parent="Scene Changing"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -64.0
+margin_top = -32.0
+margin_right = 64.0
+mouse_default_cursor_shape = 2
+text = "Change"
+
+[node name="Cancel" type="Button" parent="Scene Changing"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -64.0
+margin_top = 16.0
+margin_right = 64.0
+margin_bottom = 48.0
+mouse_default_cursor_shape = 2
+text = "Cancel"
+
+[connection signal="pressed" from="Buttons/Button 4" to="." method="_on_Button_4_pressed"]
+[connection signal="pressed" from="Buttons/Button 1" to="." method="_on_Button_1_pressed"]
+[connection signal="pressed" from="Buttons/Button 3" to="." method="_on_Button_3_pressed"]
+[connection signal="pressed" from="Buttons/Button 2" to="." method="_on_Button_2_pressed"]
+[connection signal="pressed" from="Quit/Yes" to="." method="_on_Yes_on_Quit_pressed"]
+[connection signal="pressed" from="Quit/No" to="." method="_on_No_on_Quit_pressed"]
+[connection signal="pressed" from="Scene Changing/Change" to="." method="_on_Change_pressed"]
+[connection signal="pressed" from="Scene Changing/Cancel" to="." method="_on_Cancel_pressed"]
